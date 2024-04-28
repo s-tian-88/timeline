@@ -1,0 +1,25 @@
+.main-container {
+    width: 60vw;
+    height: 100vh;
+    background-color: #EFEFEF;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.cards-container {
+    background-color: #107ABB;
+    width: 100%;
+    height: 90%;
+    border: 4px solid #EFEFEF;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.widget-container {
+    background-color: #107ABB;
+    width: 100%;
+    height: 10%;
+    border: 4px solid #EFEFEF;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
