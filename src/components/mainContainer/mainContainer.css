@@ -20,6 +20,7 @@
     width: 100%;
     height: 10%;
     border: 4px solid #EFEFEF;
+    border-top: none;
     border-radius: 10px;
     box-sizing: border-box;
 }
