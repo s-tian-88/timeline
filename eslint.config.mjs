@@ -3,23 +3,20 @@ import pluginJs from "@eslint/js";
 
 
 export default [
+  {languageOptions: { globals: globals.browser }},
+  pluginJs.configs.recommended,
   {
-      files: ["**/*.js"],
-      languageOptions: {
-          sourceType: "module",
-          globals: globals.browser 
+      files: ['**/*.js'],
+      rules: {
+          "no-undef": "off"
       }
   },
-
   {
       ignores: [
-          "src/css/fontawesome-free-6.5.2-web/",
-          "dist/",
-          ".yarn/",
-          ".pnp*"
+          "**/fontawesome-free-6.5.2-web/",
+          "**/dist/",
+          "**/.yarn",
+          "**.pnp*"
       ]
-  },
-
-  pluginJs.configs.recommended,
-
+  }
 ];

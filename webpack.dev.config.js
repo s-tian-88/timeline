@@ -1,6 +1,6 @@
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.config');
-const { ProgressPlugin }= require('webpack');
+const { ProgressPlugin } = require('webpack');
 
 
 module.exports = merge(common, {
