@@ -1,0 +1,55 @@
+.text-message-card {
+    padding: 5px;
+    border-bottom: 2px solid #242933;
+
+    transition: opacity 500ms;
+}
+
+.text-message-card-header {
+}
+
+.text-message-card-content {
+    padding: 10px 0;
+}
+
+.text-message-card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-message-card-footer-content {
+}
+
+.text-message-card-footer-btns {
+    width: 10%;
+    min-width: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-message-card-btn {
+    width: 20px;
+    height: 20px;
+
+    background-color: inherit;
+    border: none;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    cursor: pointer;
+
+}
+
+.delete {
+    background-image: url('./icons/trash-solid.svg');
+}
+
+.like {
+    background-image: url('./icons/thumbs-up-solid.svg');
+}
+
+.mark {
+    background-image: url('./icons/check-solid.svg');
+}

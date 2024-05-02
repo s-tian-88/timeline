@@ -3,7 +3,8 @@
   "packageManager": "yarn@4.1.1",
   "scripts": {
     "prestart": "yarn install",
-    "build": "webpack --config webpack.dev.config",
+    "build": "webpack --config webpack.prod.config",
+    "build:dev": "webpack --config webpack.dev.config",
     "start": "webpack serve --config webpack.prod.config",
     "start:dev": "webpack serve --config webpack.dev.config",
     "lint": "eslint --fix .",
