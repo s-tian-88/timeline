@@ -1,7 +1,7 @@
 import { getCommonWidgetHtml } from './commonWidgetHtml';
 import './commonWidget.css';
 
-export default class CommonWidget {
+export default class CommonMessageWidget {
   constructor (container) {
     if (!(container instanceof HTMLElement)) {
       throw new Error(`${container} is not HTMLElement`);
@@ -9,7 +9,6 @@ export default class CommonWidget {
 
     this.container = container;
 
-    this.radioBtnOnChange = this.radioBtnOnChange.bind(this);
   }
 
   render () {
@@ -18,26 +17,10 @@ export default class CommonWidget {
 
   renderCommonWidgetElement () {
     const el = document.createElement('div');
-    el.classList.add('widget');
+    el.classList.add('common-message-widget');
     el.innerHTML = getCommonWidgetHtml();
 
     this.container.appendChild(el);
 
-    const radios = document.querySelectorAll('input[type="radio"]');
-    radios.forEach((rad) => {
-      rad.addEventListener('change', this.radioBtnOnChange);
-    });
   }
-
-  radioBtnOnChange (e) {
-    const radios = document.querySelectorAll('input[type="radio"]');
-    radios.forEach((rad) => {
-      if (e.target.value === rad.value) {
-        rad.parentElement.classList.add('radio-btn-checked');
-      } else {
-        rad.parentElement.classList.remove('radio-btn-checked');
-      }
-    });
-  }
-
 }

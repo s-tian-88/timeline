@@ -1,0 +1,66 @@
+.video-message-widget {
+
+    display: none;
+    width: 60%;
+
+    margin-left: 250px;
+
+    opacity: 0;
+
+    transition: opacity 1000ms;
+
+    background-color: #107ABB;
+    box-shadow: 1px -20px 20px 20px #107ABB;
+}
+
+.video-container {
+
+}
+
+video#gum, video#recorder {
+    width: 100%;
+    border-radius: 25px;
+}
+
+.video-message-widget-btns {
+
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+
+.video-message-widget-btn {
+
+    height: 30px;
+    width: 30px;
+
+    background-color: inherit;
+    border: none;
+    margin: 8px;
+
+    cursor: pointer;
+
+}
+
+button#start {
+    background-image: url('icons/circle-play-regular.svg');
+    
+    &:hover {
+        background-image: url('icons/circle-play-solid.svg');
+    }
+}
+button#stop {
+
+    display: none;
+
+    background-image: url('icons/circle-stop-regular.svg');
+    &:hover {
+        background-image: url('icons/circle-stop-solid.svg');
+    }
+}
+button#reset {
+    background-image: url('icons/rotate-left-solid.svg');
+    &:hover {
+        background-image: url('icons/circle-left-solid.svg');
+    }
+}

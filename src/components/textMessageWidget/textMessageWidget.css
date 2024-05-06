@@ -1,0 +1,33 @@
+.text-message-widget {
+
+    display: none;
+    background-color: inherit;
+    margin-bottom: 6px;
+
+    width: 100%;
+    border-radius: 5px;
+
+    opacity: 0;
+    transition: opacity 1000ms;
+
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.text-message-textarea {
+    font-size: 18px;
+    padding-left: 5px;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 5px;
+    resize: none;
+}
+
+.enable-widget {
+    display: flex !important;
+}
+
+.text-message-textarea:focus {
+    outline: none;
+    
+}

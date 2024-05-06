@@ -8,7 +8,8 @@ export default [
   {
       files: ['**/*.js'],
       rules: {
-          "no-undef": "off"
+          "no-undef": "off",
+          "no-unused-vars": "off"
       }
   },
   {

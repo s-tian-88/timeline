@@ -1,33 +1,38 @@
-.text-message-card {
+.message-card {
     padding: 5px;
     border-bottom: 2px solid #242933;
 
     transition: opacity 500ms;
 }
 
-.text-message-card-header {
+.message-video {
+    width: 320px;
+    height: 240px;
+
+    border-radius: 25px;
 }
 
-.text-message-card-content {
+.message-card-content {
     padding: 10px 0;
+    white-space: pre;
 }
 
-.text-message-card-footer {
+.message-card-footer {
     display: flex;
     justify-content: space-between;
 }
 
-.text-message-card-footer-content {
+.message-card-footer-content {
 }
 
-.text-message-card-footer-btns {
+.message-card-footer-btns {
     width: 10%;
     min-width: 80px;
     display: flex;
     justify-content: space-between;
 }
 
-.text-message-card-btn {
+.message-card-btn {
     width: 20px;
     height: 20px;
 

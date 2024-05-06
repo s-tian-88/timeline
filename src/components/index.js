@@ -1,8 +1,9 @@
 import MainContainer from './mainContainer';
-import CommonWidgetHtml from './commonWidget';
-import MessageWidget from './messageWidget';
-import TextMessageCard from './textMessageCard';
+import CommonMessageWidget from './commonWidget';
+import TextMessageWidget from './textMessageWidget';
+import MessageCard from './messageCard';
 import UserCoordsWidget from './userCoordsWidget';
+import VideoMessageWidget from './videoMessageWidget';
 
 export default function mian () {
 
@@ -38,14 +39,17 @@ export default function mian () {
   mainContainer.render();
 
   const commonWidgetContainer = document.querySelector('.widget-container');
-  const commonWidget = new CommonWidgetHtml(commonWidgetContainer);
+  const commonWidget = new CommonMessageWidget(commonWidgetContainer);
   commonWidget.render();
 
-  const widgetrContainer = document.querySelector('.widget-main');
-  const messageWidget = new MessageWidget(widgetrContainer);
+  const widgetContainer = document.querySelector('.common-message-widget-main');
+  const messageWidget = new TextMessageWidget(widgetContainer);
   messageWidget.render();
 
+  const videoMessageWidget = new VideoMessageWidget(widgetContainer);
+  videoMessageWidget.render();
+
   const cardsContainer = document.querySelector('.cards-container');
-  const textMessageCard = new TextMessageCard(cardsContainer);
+  const textMessageCard = new MessageCard(cardsContainer);
   textMessageCard.render();
 }
