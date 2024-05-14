@@ -2,41 +2,32 @@ import MainContainer from './mainContainer';
 import CommonMessageWidget from './commonWidget';
 import TextMessageWidget from './textMessageWidget';
 import MessageCard from './messageCard';
-import UserCoordsWidget from './userCoordsWidget';
+import CoordsPopup from './coordsPopup';
 import VideoMessageWidget from './videoMessageWidget';
 
 export default function mian () {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
-
-      // callback
-      (data) => {
+      ( data ) => {
         const { latitude, longitude } = data.coords;
-        localStorage.setItem('userCoordinates', JSON.stringify(
+        localStorage.setItem('coordinates', JSON.stringify(
           {
-            lat: latitude,
-            lon: longitude
+            latitude: latitude,
+            longitude: longitude
           }
         ));
       },
-
-      // error callback
-      () => {
-        const coordWidget = new UserCoordsWidget(document.body);
-        coordWidget.render();
-      },
-
-      // options
+      () => {},
       { enableHighAccuracy: true }
-    );
-  } else {
-    const coordWidget = new UserCoordsWidget(document.body);
-    coordWidget.render();
+    )
   }
 
   const mainContainer = new MainContainer(document.body);
   mainContainer.render();
+
+  const coordsPopup = new CoordsPopup(document.body);
+  coordsPopup.render();
 
   const commonWidgetContainer = document.querySelector('.widget-container');
   const commonWidget = new CommonMessageWidget(commonWidgetContainer);
@@ -52,4 +43,6 @@ export default function mian () {
   const cardsContainer = document.querySelector('.cards-container');
   const textMessageCard = new MessageCard(cardsContainer);
   textMessageCard.render();
+
+
 }

@@ -96,17 +96,11 @@ export default class VideoMessageWidget {
     const mediaRecoder = new MediaRecorder(stream);
     const chunks = [];
 
-    mediaRecoder.addEventListener('start', () => {
-      console.log('start recording');
-    });
-
     mediaRecoder.addEventListener('dataavailable', (event) => {
-      console.log('add data');
       chunks.push(event.data);
     });
 
     mediaRecoder.addEventListener('stop', () => {
-      console.log('stop recording');
       const blob = new Blob(chunks);
 
       player.style.display = 'none';

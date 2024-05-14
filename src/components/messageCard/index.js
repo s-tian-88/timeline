@@ -1,6 +1,8 @@
 import { getMessageCardInnerHtml } from './messageCardInnerHtml';
 import './messageCard.css';
 
+import { dateFormatter } from '../../js/services';
+
 export default class MessageCard {
   constructor(container) {
     if (!(container instanceof HTMLElement)) {
@@ -11,22 +13,24 @@ export default class MessageCard {
 
     this.sendMessageBtnOnClick = this.sendMessageBtnOnClick.bind(this);
     this.deleteCardBtnOnClick = this.deleteCardBtnOnClick.bind(this);
+    this.coordsPopupBtnOnClick = this.coordsPopupBtnOnClick.bind(this);
 
     document.querySelector('button#send-message-btn').addEventListener('click', this.sendMessageBtnOnClick);
+    document.querySelector('button#coords-popup-btn').addEventListener('click', this.coordsPopupBtnOnClick);
+
   }
 
   render () {
     // pass
   }
 
-  renderMessageCardElement (messageMode) {
+  renderMessageCardElement (messageMode, coords) {
 
     const el = document.createElement('div');
     el.classList.add('message-card');
 
-    const userCoords = JSON.parse(localStorage.getItem('userCoordinates'));
-    const position = `[${userCoords.lat}], [${userCoords.lon}]`;
-    const created = Date.now();
+    const position = `[${coords.latitude}, ${coords.longitude}]`;
+    const created = dateFormatter(Date.now());
 
     el.innerHTML = getMessageCardInnerHtml(messageMode, position, created);
 
@@ -41,13 +45,53 @@ export default class MessageCard {
 
     const messageMode = localStorage.getItem('messageMode');
 
-    if ( messageMode === 'text' ) {
+    if (messageMode === 'text' && (!document.querySelector('.text-message-textarea').value)) {
+          return;
+        }
 
-      const textarea = document.querySelector('.text-message-textarea');
+    if (messageMode === 'video' && (document.querySelector('video#recorder').style.display === 'none')) {
+          return;
+        }
 
-      if (textarea.value) {
+
+    if ( localStorage.getItem('coordinates') ) {
+      const coords = JSON.parse(localStorage.getItem('coordinates'));
+      this.sendMessage(coords);
+    } else {
+      document.querySelector('.coords-popup-widget').style.display = 'flex';
+    }
+
+  }
+
+  coordsPopupBtnOnClick (e) {
+
+    e.preventDefault();
+
+    const [latitde, longitude] = document.querySelector('input#coords-popup-input').value.replaceAll(' ', '').split(',');
+    const coords = {
+      latitude: latitde,
+      longitude: longitude
+    }
+
+    e.target.closest('.coords-popup-widget').style.display = 'none';
+
+    this.sendMessage(coords);
+
+  }
+
+  sendMessage (coords) {
+
+    const messageMode = localStorage.getItem('messageMode');
+
+
+    switch(messageMode) {
+
+      case 'text':
+
+        const textarea = document.querySelector('.text-message-textarea');
         const text = textarea.value
-        this.renderMessageCardElement('Text message');
+
+        this.renderMessageCardElement(messageMode.toUpperCase(), coords);
 
         const contentArea = document.querySelector('.message-card-content');
         contentArea.textContent = text;
@@ -56,23 +100,24 @@ export default class MessageCard {
 
         textarea.value = '';
         textarea.style.height = 'auto';
-      }
-    } else if ( messageMode === 'video' ) {
 
-      const recorder = document.querySelector('video#recorder');
-      if ( recorder.style.display === 'none' ) {
-        return
-      }
+        break;
+      
+      case 'video':
 
-      const currentCardEl = this.renderMessageCardElement('Video message');
-      const contentField = currentCardEl.querySelector('.message-card-content');
-      const cardVideo = document.createElement('video');
-      cardVideo.id = 'card-video';
-      cardVideo.classList.add('message-video');
-      cardVideo.setAttribute('controls', true);
-      cardVideo.src = recorder.src;
+        const recorder = document.querySelector('video#recorder');
 
-      contentField.appendChild(cardVideo);
+        const currentCardEl = this.renderMessageCardElement(messageMode.toUpperCase(), coords);
+        const contentField = currentCardEl.querySelector('.message-card-content');
+        const cardVideo = document.createElement('video');
+        cardVideo.id = 'card-video';
+        cardVideo.classList.add('message-video');
+        cardVideo.setAttribute('controls', true);
+        cardVideo.src = recorder.src;
+
+        contentField.appendChild(cardVideo);
+
+        break;
 
     }
   }

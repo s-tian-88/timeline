@@ -9,7 +9,8 @@ export default [
       files: ['**/*.js'],
       rules: {
           "no-undef": "off",
-          "no-unused-vars": "off"
+          "no-unused-vars": "off",
+          "no-case-declarations": "off"
       }
   },
   {

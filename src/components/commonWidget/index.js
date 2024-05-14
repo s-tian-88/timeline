@@ -22,5 +22,8 @@ export default class CommonMessageWidget {
 
     this.container.appendChild(el);
 
+    const commonWodgetSendBtn = el.querySelector('button#send-message-btn');
+
+
   }
 }
